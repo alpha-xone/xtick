@@ -1,2 +1,3 @@
 # xtick
-Visualization of intraday data
+
+Visualization for intraday data
