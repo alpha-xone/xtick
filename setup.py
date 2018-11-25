@@ -1,7 +1,7 @@
 import pathlib
 from os import path
 from io import open
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # for pip >= 10
 try:
@@ -27,20 +27,11 @@ def parse_description():
     """
     Parse the description in the README file
     """
-    try:
-        from pypandoc import convert
-
-        readme_file = f'{PACKAGE_ROOT}/docs/index.rst'
-        if not path.exists(readme_file):
-            raise ImportError
-        return convert(readme_file, 'rst')
-
-    except ImportError:
-        readme_file = f'{PACKAGE_ROOT}/README.md'
-        if path.exists(readme_file):
-            with open(readme_file, 'r', encoding='utf-8') as f:
-                long_description = f.read()
-            return long_description
+    readme_file = f'{PACKAGE_ROOT}/README.md'
+    if path.exists(readme_file):
+        with open(readme_file, 'r', encoding='utf-8') as f:
+            long_description = f.read()
+        return long_description
 
     return ''
 
@@ -50,7 +41,7 @@ if __name__ == '__main__':
     setup(
         name='xtick',
         version=parse_version('xtick'),
-        description='',
+        description='Visualization for intraday data',
         long_description=parse_description(),
         long_description_content_type='text/markdown',
         url='https://github.com/alpha-xone/xtick',
@@ -68,5 +59,5 @@ if __name__ == '__main__':
                 f'{PACKAGE_ROOT}/venv/reqs.txt', session='hack'
             )
         ],
-        packages=['xtick'],
+        packages=find_packages(include=['xtick', 'xtick.*']),
     )

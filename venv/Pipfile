@@ -5,11 +5,14 @@ verify_ssl = true
 
 [dev-packages]
 ipykernel = "*"
+xbbg = "*"
+notebook = "*"
 
 [packages]
 numpy = "*"
 pandas = "*"
 matplotlib = "*"
+xone = "*"
 
 [requires]
 python_version = "3.6"
